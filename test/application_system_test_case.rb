@@ -1,5 +1,31 @@
-require "test_helper"
+require 'test_helper'
 
-class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-  driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+class StaticPagesControllerTest < ActionDispatch::IntegrationTest
+
+  test "should get root" do
+    get root 'static_pages#home'
+    assert_response :success
+  end
+
+  test "should get home" do
+    get static_pages_home_url
+    assert_response :success
+        assert_select "title", "Home | Ruby on Rails Tutorial Sample App"
+
+  end
+
+  test "should get help" do
+    get static_pages_help_url
+    assert_response :success
+        assert_select "title", "Help | Ruby on Rails Tutorial Sample App"
+
+  end
+
+    test "should get about" do
+    get static_pages_about_url
+    assert_response :success
+        assert_select "title", "About | Ruby on Rails Tutorial Sample App"
+
+  end
+
 end
